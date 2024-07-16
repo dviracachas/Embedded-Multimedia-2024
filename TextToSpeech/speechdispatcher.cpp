@@ -10,9 +10,7 @@ SpeechDispatcher::SpeechDispatcher(QObject *parent)
 
 void SpeechDispatcher::start(QString text)
 {
-    this->divideText(text);
-    qInfo() << arguments;
-    qInfo() << arguments.size();
+    this->splitText(text);
     this->speak();
 
 }
@@ -23,12 +21,9 @@ void SpeechDispatcher::speak()
     for (int i = 0; i < arguments.size(); i += 1)
     {
         argu <<"-t" <<"female1" << arguments[i];
-        qInfo() << argu;
         this->sayLine(argu);
         argu.clear();
     }
-    this->quiet();
-
 
 }
 
@@ -38,15 +33,29 @@ void SpeechDispatcher::quiet()
     mProcess.kill();
 }
 
-void SpeechDispatcher::divideText(QString text)
+void SpeechDispatcher::splitText(QString text)
 {
     QString tmp(text);
     QStringList list;
     list.clear();
+    QString space =" ";
 
     while (!tmp.isEmpty()) {
-        list.append(tmp.left(stringSize));
-        tmp.remove(0, stringSize);
+        int nextSpace = tmp.indexOf(space,stringSize-1);
+        int prevSpace = tmp.lastIndexOf(space,stringSize-1);
+        int nextDistance = nextSpace - (stringSize-1);
+        int prevDistance = (stringSize-1) - prevSpace;
+
+        if (tmp.size()<=stringSize){
+            list.append(tmp.left(stringSize));
+            tmp.remove(0, stringSize);
+        }else if (abs(nextDistance) < abs(prevDistance)){
+            list.append(tmp.left(nextSpace+1));
+            tmp.remove(0, nextSpace+1);
+        }else if(abs(nextDistance) >= abs(prevDistance)){
+            list.append(tmp.left(prevSpace+1));
+            tmp.remove(0, prevSpace+1);
+        }
     }
     arguments = list;
 

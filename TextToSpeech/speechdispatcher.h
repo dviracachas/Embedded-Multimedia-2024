@@ -6,6 +6,7 @@
 #include <QSysInfo>
 #include <QProcess>
 #include <QThread>
+#include <QRegularExpression>
 
 class SpeechDispatcher : public QObject
 {
@@ -14,26 +15,18 @@ public:
     explicit SpeechDispatcher(QObject *parent = nullptr);
 
     QString text;
-
-
-
-signals:
-
-
-public:
     void start(QString text);
     void speak();
     void quiet();
 
 private:
-    void divideText(QString text);
-    void sayLine(QStringList textlines);
     QProcess mProcess;
-    QString command ="spd-say";
-    const int stringSize = 75;
-    const int delay = 5;
+    const QString command ="spd-say";
+    const int stringSize =75;
+    const int delay =4.8;
     QStringList arguments;
-
+    void splitText(QString text);
+    void sayLine(QStringList textlines);
 
 
 };
