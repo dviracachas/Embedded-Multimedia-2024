@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QCoreApplication>  // Include this header to use QCoreApplication
 #include <QProcess>
+
 ProcessRunner::ProcessRunner(QObject *parent) : QObject(parent)
 {
     //connect(&process, &QProcess::readyReadStandardOutput, this, &ProcessRunner::readOutput);
@@ -18,6 +19,7 @@ void ProcessRunner::startProcess(const QString &exePath, const bool isPython=fal
 
     if (!process.waitForStarted())
         qDebug() << "Failed to start process";
+
 }
 
 void ProcessRunner::readOutput()

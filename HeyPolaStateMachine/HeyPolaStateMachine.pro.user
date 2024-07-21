@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.2, 2024-07-16T20:24:29. -->
+<!-- Written by QtCreator 9.0.2, 2024-07-17T18:23:49. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -235,7 +235,9 @@
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">QML_XHR_ALLOW_FILE_READ=1</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/pi/Documents/HeyPolaStateMachine/HeyPolaStateMachine/HeyPolaStateMachine.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/pi/Documents/HeyPolaStateMachine/HeyPolaStateMachine/HeyPolaStateMachine.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>

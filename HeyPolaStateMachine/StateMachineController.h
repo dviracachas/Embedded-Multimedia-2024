@@ -17,8 +17,8 @@ public slots:
 signals:
     void keywordDetected();
     void recordingDone();
-    void transcriptionDone();
-    void llamaResponse();
+    void transcriptionDone(const QString text_t);
+    void llamaResponse(const QString text_r);
     void textSound();
     void stateError();
     void replaceText(const QString newText);

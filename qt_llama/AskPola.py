@@ -5,14 +5,14 @@ import requests
 import json
 
 #url = "http://localhost:3000/ollama/api/generate"
-url = "http://192.168.0.229:3000/ollama/api/generate"
-
+#url = "http://192.168.0.229:3000/ollama/api/generate"
+url = "http://192.168.1.111:3000/ollama/api/generate"
 #api_key = 'sk-8090dded451a49528beee731402c7375'
 api_key = 'sk-9b8e2f13268846a1b2898f06eaa3d6a9'
 
 def AskPola(prompt):
 	headers = {	'Authorization': f'Bearer {api_key}',	"Content-Type": "application/json"}
-	data = {"model": "tinyllama", "prompt": prompt , "stream": False}
+	data = {"model": "gemma:2b", "prompt": prompt , "stream": False,}
 	start = timeit.default_timer()
 	response = requests.post(url, headers=headers, data=json.dumps(data))
 	if response.status_code == 200:
@@ -32,7 +32,8 @@ if __name__ == "__main__":
 		sys.exit(1)	
 	question = sys.argv[1]
 	#print("You have Pola asked: " + question)
-	antwort = AskPola(question)
+	system_prompt = "Your name is Pola, you're a personal assistant that answers briefly, concisely and politely to this: "
+	antwort = AskPola(system_prompt + question)
 	#print(antwort, end="")
 	f = open("/mnt/ramdisk/response.txt", "w")
 	f.write(antwort)

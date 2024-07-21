@@ -7,6 +7,7 @@
 #include <QtStateMachine/QFinalState>
 #include <QDebug>
 #include <QTimer>
+#include <QThread>
 #include "StateMachineController.h"
 #include "processrunner.h"
 #include <QInputDialog>
@@ -79,8 +80,9 @@ int main(int argc, char *argv[])
         qDebug() << "wake word finished.";
         runner.startProcess("/home/pi/Documents/fw_Record/fw_Record", false);////alterd
     });
+
     QObject::connect(stt_state, &QState::entered, [&runner,&controller]() {                         ////new
-        qDebug() << "I heard you.";                                                                 ////new
+        qDebug() << "I heard you.";
         runner.process.waitForFinished(-1);
         qDebug() << "recording finished.";////new
         runner.startProcess("/home/pi/Documents/fw_Transcribe/transcribe.py", true);                ////new

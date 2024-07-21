@@ -36,13 +36,13 @@ void StateMachineController::handleUserInput(const QString& input) {
             emit stateError();
             qDebug() <<"Error in Transcribe";
         }else{
-            emit transcriptionDone();
-            emit replaceText(transcribed_from_txt);
+            emit transcriptionDone(transcribed_from_txt);
+            //emit replaceText(transcribed_from_txt);
         }
-    }else if (input == "ask"){
-        emit llamaResponse();
+    }else if (input == "ask"){    
         QString response_from_txt = ask_read("/mnt/ramdisk/response.txt");
-        emit replaceText(response_from_txt);
+        emit llamaResponse(response_from_txt);
+        //emit replaceText(response_from_txt);
     }  else if (input == "talk"){
         emit textSound();
     } else if (input == "quit") {
