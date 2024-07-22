@@ -8,13 +8,38 @@
 
 #include <iostream>
 
+
+// Read Access Key from file
+const char* getAccessKeyFromFile(const std::string& fileName) {
+    std::string path_str = "/opt/Embedded-Multimedia-2024/resources";
+    std::ifstream infile(path_str);
+    if (!infile) {
+        qDebug() << "Failed to access Access Key file";
+        return nullptr;
+    }
+    std::string access_key_str;
+    std::getline(infile, access_key_str);
+    infile.close();
+    if (access_key_str.empty()) {
+        qDebug() << "Access Key file is empty";
+        return nullptr;
+    }
+    size_t size = access_key_str.length() + 1;
+    char* access_key = new char[size];
+    std::strncpy(access_key, access_key_str.c_str(), size);
+    access_key[size - 1] = '\0'; // Ensure null termination
+
+    return access_key;
+}
+
+
 // Porcupine arguments
-static const char MODEL_PATH[] = "/home/pi/Downloads/porcupine/lib/common/porcupine_params_es.pv";
+static const char MODEL_PATH[] = "/opt/Embedded-Multimedia-2024/HeyPola/porcupine/lib/common/porcupine_params_es.pv";
 static const char *KEYWORDS_PATH[] = {
-    "/home/pi/Downloads/Other/Hey-Pola_es_raspberry-pi_v3_0_0.ppn",
+    "/opt/Embedded-Multimedia-2024/resources/Hey-Pola_es_raspberry-pi_v3_0_0.ppn",
     nullptr
 };
-static const char ACCESS_KEY[] = "";
+static const char* ACCESS_KEY = getAccessKeyFromFile("/AccessKey.txt");
 
 static pv_porcupine_t *porcupineObject;
 static QAudioSource *audioInput;
