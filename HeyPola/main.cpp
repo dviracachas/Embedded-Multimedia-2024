@@ -1,6 +1,8 @@
 #include <QCoreApplication>
 #include <QDebug>
 
+#include <QDir>
+#include <fstream>
 #include <pv_porcupine.h>
 #include <QMediaDevices>
 #include <QAudioFormat>
@@ -11,7 +13,8 @@
 
 // Read Access Key from file
 const char* getAccessKeyFromFile(const std::string& fileName) {
-    std::string path_str = "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/resources";
+    std::string source_dir = "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/resources";
+    std::string path_str = source_dir + fileName;
     std::ifstream infile(path_str);
     if (!infile) {
         qDebug() << "Failed to access Access Key file";
