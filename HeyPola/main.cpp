@@ -11,7 +11,7 @@
 
 // Read Access Key from file
 const char* getAccessKeyFromFile(const std::string& fileName) {
-    std::string path_str = "/opt/Embedded-Multimedia-2024/resources";
+    std::string path_str = "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/resources";
     std::ifstream infile(path_str);
     if (!infile) {
         qDebug() << "Failed to access Access Key file";
@@ -34,9 +34,9 @@ const char* getAccessKeyFromFile(const std::string& fileName) {
 
 
 // Porcupine arguments
-static const char MODEL_PATH[] = "/opt/Embedded-Multimedia-2024/HeyPola/porcupine/lib/common/porcupine_params_es.pv";
+static const char MODEL_PATH[] = "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/HeyPola/porcupine/lib/common/porcupine_params_es.pv";
 static const char *KEYWORDS_PATH[] = {
-    "/opt/Embedded-Multimedia-2024/resources/Hey-Pola_es_raspberry-pi_v3_0_0.ppn",
+    "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/resources/Hey-Pola_es_raspberry-pi_v3_0_0.ppn",
     nullptr
 };
 static const char* ACCESS_KEY = getAccessKeyFromFile("/AccessKey.txt");
