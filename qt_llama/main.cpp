@@ -15,8 +15,8 @@
 
 void ask_listen(const QString &question) {
         QProcess process;
-        process.start("python3", QStringList() << "/home/pi/Documents/LlamaTest/qt_llama/AskPola.py"<< question);
-        //std::cout << "You have Pola asked: \"" << question.toStdString() << "\"" << std::endl;
+        process.start("python3", QStringList() << "/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/qt_llama/AskPola.py"<< question);
+        //std::cout << "You asked: \"" << question.toStdString() << "\"" << std::endl;
         process.waitForFinished();
         QString output(process.readAllStandardOutput());
         std::cout << output.toStdString();

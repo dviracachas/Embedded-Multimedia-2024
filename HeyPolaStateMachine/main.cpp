@@ -72,32 +72,32 @@ int main(int argc, char *argv[])
         qDebug() << "Pola is sleeping zzz";
         runner.process.waitForFinished(-1);
         qDebug() << "start/Text2Speech finished";
-        runner.startProcess("/home/pi/Documents/HeyPolaProject/build-HeyPola-Qt_6_6_1_6_6_1-Debug/HeyPola", false);////alterd
+        runner.startProcess("/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/HeyPola/bin/HeyPola", false);////alterd
     });
     QObject::connect(rec_state, &QState::entered, [&runner,&controller]() {
         qDebug() << "Hi Im Pola! How can I help you ?";
         runner.process.waitForFinished(-1);
         qDebug() << "wake word finished.";
-        runner.startProcess("/home/pi/Documents/fw_Record/fw_Record", false);////alterd
+        runner.startProcess("/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/fw_Record/bin/fw_Record", false);////alterd
     });
 
     QObject::connect(stt_state, &QState::entered, [&runner,&controller]() {                         ////new
         qDebug() << "I heard you.";
         runner.process.waitForFinished(-1);
         qDebug() << "recording finished.";////new
-        runner.startProcess("/home/pi/Documents/fw_Transcribe/transcribe.py", true);                ////new
+        runner.startProcess("/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/fw_Transcribe/transcribe.py", true);                ////new
     });                                                                                             ////new
     QObject::connect(gpt_state, &QState::entered, [&runner,&controller]() {
         qDebug() << "Alright, let me think about it.";
         runner.process.waitForFinished(-1);
         qDebug() << "transcription finished.";
-        runner.startProcess("/home/pi/Documents/LlamaTest/qt_llama/qt_llama", false);
+        runner.startProcess("/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/qt_llama/bin/qt_llama", false);
     });
     QObject::connect(tts_state, &QState::entered, [&runner,&controller]() {
         qDebug() << "Oh right, here is the answer.";
         runner.process.waitForFinished(-1);
         qDebug() << "ask llama finished.";
-        runner.startProcess("/home/pi/Software/Embedded/TextToSpeech/build-TextToSpeech-Qt_6_6_1_6_6_1-Debug/TextToSpeech", false);
+        runner.startProcess("/home/pi/.HeyPolaProject/Embedded-Multimedia-2024/TextToSpeech/bin/TextToSpeech", false);
     });
     QObject::connect(&machine, &QStateMachine::finished, []() {
         qDebug() << "Machine finished. Type 'quit' to exit.";
