@@ -16,6 +16,13 @@ HEADERS += \
 
 RESOURCES += qml.qrc
 
+QMAKE_BUILD_DIR = $$PWD/build
+QMAKE_CLEAN = $$QMAKE_BUILD_DIR
+
+DESTDIR=bin
+OBJECTS_DIR=generated_files
+MOC_DIR=generated_files
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 

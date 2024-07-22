@@ -20,3 +20,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     speechdispatcher.h
+    
+QMAKE_BUILD_DIR = $$PWD/build
+QMAKE_CLEAN = $$QMAKE_BUILD_DIR
+
+DESTDIR=bin
+OBJECTS_DIR=generated_files
+MOC_DIR=generated_files

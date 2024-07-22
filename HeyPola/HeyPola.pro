@@ -22,3 +22,10 @@ SOURCES += \
 LIBS += -L/home/pi/Downloads/porcupine/lib/raspberry-pi/cortex-a72-aarch64/ -lpv_porcupine
 
 INCLUDEPATH += /home/pi/Downloads/porcupine/include/
+
+QMAKE_BUILD_DIR = $$PWD/build
+QMAKE_CLEAN = $$QMAKE_BUILD_DIR
+
+DESTDIR=bin
+OBJECTS_DIR=generated_files
+MOC_DIR=generated_files
